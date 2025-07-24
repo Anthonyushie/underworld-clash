@@ -1,4 +1,3 @@
-import { NavLink, useLocation } from "react-router-dom";
 import { 
   Home, 
   Package, 
@@ -36,15 +35,18 @@ const adminRoutes = [
 
 export function GameSidebar() {
   const { state } = useSidebar();
-  const location = useLocation();
-  const currentPath = location.pathname;
   const collapsed = state === "collapsed";
+  const currentPath = window.location.pathname;
 
   const isActive = (path: string) => currentPath === path;
-  const getNavCls = ({ isActive }: { isActive: boolean }) =>
+  const getNavCls = (isActive: boolean) =>
     isActive 
-      ? "bg-primary text-primary-foreground font-medium shadow-gold" 
-      : "hover:bg-accent hover:text-accent-foreground";
+      ? "bg-primary text-primary-foreground font-medium shadow-gold w-full flex items-center gap-2 px-3 py-2 rounded-md" 
+      : "hover:bg-accent hover:text-accent-foreground w-full flex items-center gap-2 px-3 py-2 rounded-md";
+
+  const handleNavigation = (url: string) => {
+    window.location.href = url;
+  };
 
   return (
     <Sidebar className={collapsed ? "w-14" : "w-64"}>
@@ -60,10 +62,13 @@ export function GameSidebar() {
               {gameRoutes.map((route) => (
                 <SidebarMenuItem key={route.title}>
                   <SidebarMenuButton asChild>
-                    <NavLink to={route.url} end className={getNavCls}>
+                    <button 
+                      onClick={() => handleNavigation(route.url)}
+                      className={getNavCls(isActive(route.url))}
+                    >
                       <route.icon className="h-4 w-4" />
                       {!collapsed && <span>{route.title}</span>}
-                    </NavLink>
+                    </button>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -82,10 +87,13 @@ export function GameSidebar() {
               {adminRoutes.map((route) => (
                 <SidebarMenuItem key={route.title}>
                   <SidebarMenuButton asChild>
-                    <NavLink to={route.url} className={getNavCls}>
+                    <button 
+                      onClick={() => handleNavigation(route.url)}
+                      className={getNavCls(isActive(route.url))}
+                    >
                       <route.icon className="h-4 w-4" />
                       {!collapsed && <span>{route.title}</span>}
-                    </NavLink>
+                    </button>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

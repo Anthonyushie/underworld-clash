@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useGameData } from "@/hooks/useGameData";
 import { Swords, Package, Store, Trophy, Clock, Target } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link } from "wouter";
 
 export default function Dashboard() {
   const { player, userItems, battles } = useGameData();
