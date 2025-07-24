@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mafia Underworld Design System - Dark, Gritty, Criminal Empire Aesthetic
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Main backgrounds - Deep charcoal empire */
+    --background: 220 13% 8%;
+    --foreground: 45 15% 85%;
+
+    /* Card surfaces - Slightly lighter for depth */
+    --card: 220 15% 12%;
+    --card-foreground: 45 15% 85%;
+
+    /* Popover surfaces */
+    --popover: 220 15% 12%;
+    --popover-foreground: 45 15% 85%;
+
+    /* Primary - Mafia Gold (signature wealth color) */
+    --primary: 45 85% 55%;
+    --primary-foreground: 220 13% 8%;
+
+    /* Secondary - Blood Red (danger, combat) */
+    --secondary: 0 75% 45%;
+    --secondary-foreground: 45 15% 85%;
+
+    /* Muted - Darker grays for less important elements */
+    --muted: 220 10% 18%;
+    --muted-foreground: 45 8% 55%;
+
+    /* Accent - Deep burgundy (luxury, wealth) */
+    --accent: 345 50% 25%;
+    --accent-foreground: 45 15% 85%;
+
+    /* Destructive - Bright red for warnings */
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 45 15% 85%;
+
+    /* Borders and inputs - Subtle gold tint */
+    --border: 45 25% 25%;
+    --input: 220 15% 15%;
+    --ring: 45 85% 55%;
+
+    /* Radius for sharp criminal aesthetic */
+    --radius: 0.25rem;
+
+    /* Sidebar colors - Dark empire theme */
+    --sidebar-background: 220 15% 10%;
+    --sidebar-foreground: 45 15% 85%;
+    --sidebar-primary: 45 85% 55%;
+    --sidebar-primary-foreground: 220 13% 8%;
+    --sidebar-accent: 345 50% 25%;
+    --sidebar-accent-foreground: 45 15% 85%;
+    --sidebar-border: 45 25% 25%;
+    --sidebar-ring: 45 85% 55%;
+
+    /* Custom game-specific colors */
+    --health: 120 65% 45%;
+    --energy: 210 85% 55%;
+    --currency: 45 85% 55%;
+    --xp: 280 65% 55%;
+    --rarity-common: 0 0% 60%;
+    --rarity-rare: 210 85% 55%;
+    --rarity-epic: 280 65% 55%;
+    --rarity-legendary: 45 85% 55%;
+
+    /* Combat and status effects */
+    --victory: 120 65% 45%;
+    --defeat: 0 75% 45%;
+    --kidnapped: 15 85% 35%;
+    
+    /* Gradients for visual impact */
+    --gradient-gold: linear-gradient(135deg, hsl(45 85% 55%), hsl(35 75% 45%));
+    --gradient-blood: linear-gradient(135deg, hsl(0 75% 45%), hsl(15 65% 35%));
+    --gradient-empire: linear-gradient(135deg, hsl(220 13% 8%), hsl(220 15% 12%));
+    --gradient-luxury: linear-gradient(135deg, hsl(345 50% 25%), hsl(330 40% 20%));
+
+    /* Shadows for depth and atmosphere */
+    --shadow-card: 0 4px 16px hsla(220, 13%, 0%, 0.4);
+    --shadow-combat: 0 8px 32px hsla(0, 75%, 45%, 0.3);
+    --shadow-gold: 0 4px 16px hsla(45, 85%, 55%, 0.2);
+    --shadow-inner: inset 0 2px 4px hsla(220, 13%, 0%, 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
