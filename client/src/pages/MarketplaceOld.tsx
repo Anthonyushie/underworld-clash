@@ -34,19 +34,19 @@ const marketplaceItems = [
   {
     id: "mp-3",
     name: "Golden Horseshoe",
-    description: "Lucky charm that increases critical hit chance and job success rates.",
-    category: "special" as const,
-    effect: { crit_chance: 15, job_success_multiplier: 1.2 },
-    price: 12000,
+    description: "Extremely rare lucky charm. Increases fortune in all endeavors.",
+    category: "utility" as const,
+    effect: { steal_chance: 10, xp_multiplier: 1.25 },
+    price: 15000,
     rarity: "legendary" as const,
-    seller: "LuckyLuigi"
+    seller: "LuckyLou"
   },
   {
     id: "mp-4",
-    name: "Lockpick Set",
-    description: "Professional burglary tools. Essential for any self-respecting criminal.",
-    category: "utility" as const,
-    effect: { burglary_success_multiplier: 1.5 },
+    name: "Brass Knuckles",
+    description: "Simple but effective close combat enhancement.",
+    category: "weapon" as const,
+    effect: { attack_power: 8 },
     price: 1200,
     rarity: "common" as const,
     seller: "StreetVendor"
@@ -183,17 +183,15 @@ function MarketplacePage() {
       </Card>
 
       {/* Items Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredItems.map((item) => {
           const CategoryIcon = categoryIcons[item.category];
           const canAfford = player.currency >= item.price;
-
+          
           return (
             <Card 
               key={item.id}
-              className={`bg-gradient-empire border-primary shadow-card hover:shadow-gold transition-all ${
-                !canAfford ? 'opacity-50' : ''
-              }`}
+              className="bg-gradient-empire border-primary shadow-card transition-all hover:shadow-gold"
             >
               <CardHeader className="pb-3">
                 <div className="flex items-start justify-between">
@@ -213,6 +211,7 @@ function MarketplacePage() {
                     {item.rarity}
                   </Badge>
                 </div>
+                <p className="text-sm text-muted-foreground">Sold by {item.seller}</p>
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-sm text-muted-foreground">{item.description}</p>
@@ -221,7 +220,7 @@ function MarketplacePage() {
                 {Object.entries(item.effect).length > 0 && (
                   <div className="space-y-2">
                     <h4 className="text-sm font-medium text-foreground">Effects:</h4>
-                    <div className="grid grid-cols-1 gap-1 text-xs">
+                    <div className="grid grid-cols-2 gap-1 text-xs">
                       {Object.entries(item.effect).map(([key, value]) => (
                         <div key={key} className="flex justify-between">
                           <span className="text-muted-foreground capitalize">
@@ -241,23 +240,18 @@ function MarketplacePage() {
                   </div>
                 )}
 
-                {/* Seller */}
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Seller:</span>
-                  <span className="text-foreground font-medium">{item.seller}</span>
-                </div>
-
                 {/* Price and Purchase */}
-                <div className="space-y-3 pt-2 border-t border-border">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">Price:</span>
-                    <span className="text-currency font-bold text-lg">${item.price.toLocaleString()}</span>
+                <div className="flex items-center justify-between pt-2 border-t border-border">
+                  <div className="flex items-center gap-1">
+                    <Coins className="h-4 w-4 text-currency" />
+                    <span className={`font-bold ${canAfford ? 'text-currency' : 'text-destructive'}`}>
+                      ${item.price.toLocaleString()}
+                    </span>
                   </div>
-                  
                   <Button
                     onClick={() => handlePurchase(item)}
-                    variant={canAfford ? "default" : "outline"}
-                    className="w-full"
+                    variant={canAfford ? "luxury" : "outline"}
+                    size="sm"
                     disabled={!canAfford}
                   >
                     {canAfford ? "Buy Now" : "Can't Afford"}

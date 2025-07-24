@@ -1,9 +1,10 @@
+import { GameLayout } from "@/components/game/GameLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useGameData } from "@/hooks/useGameData";
 import { Trophy, Crown, TrendingUp, Zap, Heart } from "lucide-react";
 
-export default function Leaderboard() {
+function LeaderboardPage() {
   const { leaderboard } = useGameData();
 
   const getMedalColor = (rank: number) => {
@@ -162,5 +163,13 @@ export default function Leaderboard() {
         </Card>
       </div>
     </div>
+  );
+}
+
+export default function Leaderboard() {
+  return (
+    <GameLayout>
+      <LeaderboardPage />
+    </GameLayout>
   );
 }

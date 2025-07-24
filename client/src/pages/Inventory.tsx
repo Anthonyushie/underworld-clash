@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GameLayout } from "@/components/game/GameLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -14,7 +15,7 @@ const categoryIcons = {
   special: Star,
 };
 
-export default function Inventory() {
+function InventoryPage() {
   const { player, userItems, equipItem } = useGameData();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
@@ -152,5 +153,13 @@ export default function Inventory() {
         </Card>
       )}
     </div>
+  );
+}
+
+export default function Inventory() {
+  return (
+    <GameLayout>
+      <InventoryPage />
+    </GameLayout>
   );
 }

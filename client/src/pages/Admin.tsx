@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GameLayout } from "@/components/game/GameLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -14,7 +15,7 @@ import {
   Settings
 } from "lucide-react";
 
-export default function Admin() {
+function AdminPage() {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -221,5 +222,13 @@ export default function Admin() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+export default function Admin() {
+  return (
+    <GameLayout>
+      <AdminPage />
+    </GameLayout>
   );
 }

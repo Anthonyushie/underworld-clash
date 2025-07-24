@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { GameSidebar } from "./GameSidebar";
+import { ResponsiveGameLayout } from "./ResponsiveGameLayout";
 import { Menu } from "lucide-react";
 import heroImage from "@/assets/mafia-cityscape.jpg";
 

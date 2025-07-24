@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GameLayout } from "@/components/game/GameLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -7,7 +8,7 @@ import { useGameData } from "@/hooks/useGameData";
 import { useToast } from "@/hooks/use-toast";
 import { Swords, Target, Crown, Zap, Heart, TrendingUp } from "lucide-react";
 
-export default function Arena() {
+function ArenaPage() {
   const { player, opponents, attackPlayer, battles } = useGameData();
   const { toast } = useToast();
   const [selectedOpponent, setSelectedOpponent] = useState<string>("");
@@ -207,5 +208,13 @@ export default function Arena() {
         </Card>
       </div>
     </div>
+  );
+}
+
+export default function Arena() {
+  return (
+    <GameLayout>
+      <ArenaPage />
+    </GameLayout>
   );
 }
